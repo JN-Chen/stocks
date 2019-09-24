@@ -1,0 +1,1 @@
+# all file will implement a class called Stock , class Stock must inherit Stock_Iface
