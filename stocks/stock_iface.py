@@ -12,4 +12,7 @@ class Stock_Iface():
     @abc.abstractmethod
     def daily_detail(self, date, code):
         pass
+    @abc.abstractmethod
+    def is_trade_date(self, date):
+        pass
     pass
