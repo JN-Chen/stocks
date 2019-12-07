@@ -10,6 +10,7 @@ class Stock(Stock_Iface):
         self.__today = time.strftime(self.__TIME_FMT, time.localtime(time.time()))
         self.__trade_date = self.__ts.query('trade_cal', start_date='20000101', end_date=self.__today)
         self.__stocks, _, _ = self.__get_stocks()
+
     def __update_trade_date(self):
         self.__today = time.strftime(self.__TIME_FMT, time.localtime(time.time()))
         self.__trade_date = self.__ts.query('trade_cal', start_date='20000101', end_date=self.__today)
