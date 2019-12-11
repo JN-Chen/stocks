@@ -5,7 +5,7 @@ import pandas as pd
 class Data():
     def __init__(self):
         self.__TIME_FMT = "%Y%m%d"
-        self.__root_path = "sotck_data"
+        self.__root_path = "stock_data"
         self.__mk_dir(os.path.join(os.getcwd(), self.__root_path))
 
     def __mk_dir(self, dir):
@@ -21,8 +21,8 @@ class Data():
         path = os.path.join(os.path.join(os.getcwd(), self.__root_path), dir)
         os.makedirs(path)
 
-    def store_data(self, dir, df):
-        path = os.path.join(os.path.join(os.path.join(os.getcwd(), self.__root_path), dir), "daily.csv")
+    def store_data(self, dir, name, df):
+        path = os.path.join(os.path.join(os.path.join(os.getcwd(), self.__root_path), dir), name)
         df.to_csv(path)
 
     def today(self):

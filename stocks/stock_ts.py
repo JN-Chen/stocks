@@ -40,3 +40,6 @@ class Stock(Stock_Iface):
     def daily_detail(self, date, code):
         df = ts.get_tick_data(code, date=date, src='tt')
         return df
+    
+    def get_code_list(self, df):
+        return df['code'].values
