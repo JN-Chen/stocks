@@ -19,6 +19,7 @@ def get_all_and_store(data, stock, str_day, df, cover):
 
 def get_daily_and_store(data, stock, str_day, cover):
     write = False
+    df = 0
     if data.check_data(str_day ,"daily.csv"):
         if cover:
             write = True
