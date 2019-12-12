@@ -2,6 +2,7 @@ import time
 import datetime
 import os
 import pandas as pd
+import numpy as np
 class Data():
     def __init__(self):
         self.__TIME_FMT = "%Y%m%d"
@@ -29,6 +30,10 @@ class Data():
     def store_data(self, dir, name, df):
         path = os.path.join(os.path.join(os.path.join(os.getcwd(), self.__root_path), dir), name)
         df.to_csv(path)
+    
+    def load_data(self, dir, name):
+        path = os.path.join(os.path.join(os.path.join(os.getcwd(), self.__root_path), dir), name)
+        return pd.read_csv(path, dtype = {'code': np.str_})
 
     def today(self):
         return time.strftime(self.__TIME_FMT, time.localtime())
