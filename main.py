@@ -2,31 +2,34 @@ from stocks.stock_ts import *
 from data.data import *
 import sys
 
+def check_write(dir, name, cover):
+    write = False
+    if data.check_data(dir ,name):
+        if cover:
+            write = True
+    else:
+        write = True
+    return write
+
 def get_all_and_store(data, stock, str_day, df, cover):
     code_list = stock.get_code_list(df)
     store_cnt = 0
     for code in code_list:
-        write = False
-        if data.check_data(str_day ,code+".csv"):
-            if cover:
-                write = True
+        write = check_write(str_day ,code+".csv", cover)
         if write == False:
             continue
         df_code = stock.daily_detail(str_day, code)
-        data.store_data(str_day, code+".csv", df_code, cover)
+        data.store_data(str_day, code+".csv", df_code)
         store_cnt = store_cnt + 1
     return code_list, store_cnt
 
 def get_daily_and_store(data, stock, str_day, cover):
-    write = False
     df = 0
-    if data.check_data(str_day ,"daily.csv"):
-        if cover:
-            write = True
+    write = check_write(str_day ,"daily.csv", cover)
     if write :
         df = stock.daily(str_day)
         data.mk_data_dir(str_day)
-        data.store_data(str_day ,"daily.csv", df, cover)
+        data.store_data(str_day ,"daily.csv", df)
     return df
 
 if __name__ == "__main__":
