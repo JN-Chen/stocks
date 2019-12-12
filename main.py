@@ -43,7 +43,7 @@ if __name__ == "__main__":
     if sys.argv[1] != "-" :
         str_day = sys.argv[1]
     end_day = sys.argv[2]
-    print("run begin day:", str_day, " to day:", end_day, " cover:", cover)
+    print("run begin day:", str_day, " to day:", end_day, " cover:", cover, " detail:", all_detail)
     while True:
         if data.compare_time(str_day, end_day) == True:
             break
