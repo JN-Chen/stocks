@@ -16,7 +16,6 @@ def get_all_and_store(data, stock, str_day, df, cover):
     store_cnt = 0
     for code in code_list:
         write = check_write(str_day ,code+".csv", cover)
-        print('check', code, "write=", write)
         if write == False:
             continue
         df_code = stock.daily_detail(str_day, code)
