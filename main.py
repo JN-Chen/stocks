@@ -18,13 +18,13 @@ def get_all_and_store(data, stock, str_day, df, cover):
     return code_list, store_cnt
 
 def get_daily_and_store(data, stock, str_day, cover):
-    df = stock.daily(str_day)
-    data.mk_data_dir(str_day)
     write = False
     if data.check_data(str_day ,"daily.csv"):
         if cover:
             write = True
     if write :
+        df = stock.daily(str_day)
+        data.mk_data_dir(str_day)
         data.store_data(str_day ,"daily.csv", df, cover)
     return df
 
