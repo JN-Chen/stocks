@@ -43,6 +43,11 @@ class Data():
         time_prevday = time_datetime - datetime.timedelta(days = 1)
         return time_prevday.strftime(self.__TIME_FMT)
 
+    def prevNday(self, str_date, n):
+        time_datetime = datetime.datetime.strptime(str_date, self.__TIME_FMT)
+        time_prevday = time_datetime - datetime.timedelta(days = n)
+        return time_prevday.strftime(self.__TIME_FMT)
+
     def compare_time(self, time1, time2):
         #dtime1 = datetime.datetime.strptime(time1, self.__TIME_FMT)
         #dtime2 = datetime.datetime.strptime(time2, self.__TIME_FMT)
