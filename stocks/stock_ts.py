@@ -1,4 +1,4 @@
-from stock_iface import *
+from stocks.stock_iface import *
 import tushare as ts
 import time
 class Stock(Stock_Iface):

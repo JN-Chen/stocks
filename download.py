@@ -1,5 +1,5 @@
 import sys, os
-sys.path.append('/media/cjn/hdd1/stocks')
+sys.path.append('/media/hdd1/stocks')
 print(sys.path)
 from stocks.stock_ts import *
 from data.data import *
