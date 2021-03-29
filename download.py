@@ -50,7 +50,7 @@ if __name__ == "__main__":
     stock = Stock()
     data = Data()
     str_day = data.today()
-    end_day = data.prevNday(str_day, 5)
+    end_day = data.prevNday(str_day, int(sys.argv[5]))
     cover = False
     all_detail = False
     code_list = []
