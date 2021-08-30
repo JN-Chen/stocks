@@ -35,6 +35,20 @@ def get_all_and_store(data, stock, str_day, df, cover):
             none_cnt = none_cnt + 1
     return code_list, store_cnt, none_cnt
 
+def get_today_and_store(data, stock, str_day, df):
+    code_list = stock.get_code_list(df)
+    store_cnt = 0
+    none_cnt = 0
+    for code in code_list:
+        df_code = stock.today_detail(code)
+        if df_code is not None:
+            data.store_data(str_day, code+".today.csv", df_code)
+            store_cnt = store_cnt + 1
+        else:
+            none_cnt = none_cnt + 1
+    return code_list, store_cnt, none_cnt
+
+
 def get_daily_and_store(data, stock, str_day, cover):
     df = 0
     write = check_write(str_day ,"daily.csv", cover)
@@ -49,12 +63,16 @@ def get_daily_and_store(data, stock, str_day, cover):
 if __name__ == "__main__":
     stock = Stock()
     data = Data()
+    str_today = data.today()
     str_day = data.today()
     end_day = data.prevNday(str_day, int(sys.argv[5]))
     cover = False
     all_detail = False
     code_list = []
     store_cnt = 0
+    none_cnt = 0
+    store_cnt_t = 0
+    none_cnt_t = 0
     if sys.argv[4] == "1" :
         all_detail = True
     if sys.argv[3] == "1" :
@@ -71,7 +89,12 @@ if __name__ == "__main__":
             df = get_daily_and_store(data, stock, str_day, cover)
             if all_detail:
                 code_list, store_cnt, none_cnt = get_all_and_store(data, stock, str_day, df, cover)
-            print(str_day, " write csv all ", len(code_list), " codes store count:", store_cnt, " none count:", none_cnt)
+                if data.compare_time(str_today, str_day) == True:
+                    code_list_t, store_cnt_t, none_cnt_t = get_today_and_store(data, stock, str_day, df)
+                else:
+                    store_cnt_t = 0
+                    none_cnt_t = 0
+            print(str_day, " write csv all ", len(code_list), " codes store count:", store_cnt, " none count:", none_cnt, "today store count:", store_cnt_t, "today none count", none_cnt_t)
         else:
             print(str_day, " is not trade day")
         str_day = data.prevday(str_day)

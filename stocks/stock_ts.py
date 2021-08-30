@@ -38,7 +38,18 @@ class Stock(Stock_Iface):
         return df
     
     def daily_detail(self, date, code):
-        df = ts.get_tick_data(code, date=date, src='tt')
+        df = None
+        try:
+            df = ts.get_tick_data(code, date=date, src='tt')
+        except IOError:
+            print("IO error for daily code:"+code)
+        return df
+    def today_detail(self, code):
+        df = None
+        try:
+            df = ts.get_today_ticks(code)
+        except IOError:
+            print("IO error for today code:"+code)
         return df
     
     def get_code_list(self, df):
